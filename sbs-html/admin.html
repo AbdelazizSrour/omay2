@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تسجيل دخول المدير</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo', sans-serif;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* الكارت */
+.login-box{
+    width:350px;
+    padding:40px;
+    border-radius:15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(0,0,0,0.7);
+    text-align:center;
+}
+
+/* العنوان */
+.login-box h2{
+    color:#fff;
+    margin-bottom:25px;
+}
+
+/* الانبوت */
+.input-box{
+    position:relative;
+    margin-bottom:20px;
+}
+
+.input-box input{
+    width:100%;
+    padding:12px;
+    border:none;
+    outline:none;
+    border-radius:8px;
+    background:#222;
+    color:#fff;
+    transition:0.3s;
+}
+
+.input-box input:focus{
+    box-shadow:0 0 10px gold;
+}
+
+/* الزرار */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:gold;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ffd700;
+    transform:scale(1.05);
+}
+.login-box{
+    animation: fadeIn 1s ease;
+}
+.input-box{
+    position:relative;
+}
+
+.toggle-pass{
+    position:absolute;
+    left:10px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#aaa;
+    font-size:14px;
+}
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+    <h2>تسجيل دخول المدير</h2>
+
+    <div class="input-box">
+        <input type="email" id="email" placeholder="البريد الإلكتروني">
+    </div>
+
+    <div class="input-box">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <span class="toggle-pass">👁️</span>
+</div>
+
+    <button onclick="login()">دخول</button>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDab-8s-bk56o1r4eMF6Dysj85cxh6VSJY",
+  authDomain: "omay-1.firebaseapp.com",
+  projectId: "omay-1"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function(){
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, pass)
+    .then(()=>{
+        // ✅ دي أهم سطر
+        sessionStorage.setItem("justLoggedIn", "true");
+
+        window.location.href="dashboard.html";
+    })
+    .catch(()=>{
+        alert("❌ البيانات غلط");
+    });
+}
+
+const pass = document.getElementById("password");
+const toggle = document.querySelector(".toggle-pass");
+
+toggle.addEventListener("click", ()=>{
+
+    if(pass.type === "password"){
+        pass.type = "text";
+        toggle.innerHTML = "🙈";
+    }else{
+        pass.type = "password";
+        toggle.innerHTML = "👁️";
+    }
+
+});
+</script>
+
+</body>
+</html>

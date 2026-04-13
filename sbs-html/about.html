@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>من نحن - OMAY</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+
+/* ===== Base ===== */
+body{
+    margin:0;
+    font-family:Cairo;
+    background:#0a0a0a;
+    color:#fff;
+    padding-top:80px;
+}
+
+/* ===== Header ===== */
+.header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center; /* في النص */
+    align-items:center;
+    padding:20px;
+    z-index:999;
+}
+
+/* اللوجو */
+.header .logo img{
+    width:80px;
+}
+
+/* المنيو */
+.nav{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+/* اللينكات */
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:18px; /* كبرنا الخط */
+    position:relative;
+    transition:.3s;
+}
+
+/* Hover تأثير احترافي */
+.nav a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    background:#f5b400;
+    bottom:-5px;
+    right:0;
+    transition:.3s;
+}
+
+.nav a:hover{
+    color:#f5b400;
+    transform:scale(1.1);
+}
+
+.nav a:hover::after{
+    width:100%;
+    left:0;
+}
+
+/* مسافة عشان الهيدر */
+.hero{
+    margin-top:90px;
+}
+/* ===== Hero ===== */
+.hero{
+    height:70vh;
+    background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.95)),
+    url('https://images.unsplash.com/photo-1554224155-6726b3ff858f') center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 20px;
+}
+
+.hero h1{
+    font-size:45px;
+}
+
+.hero span{
+    color:#f5b400;
+}
+
+.hero p{
+    color:#ccc;
+}
+
+/* ===== Sections ===== */
+.section{
+    padding:70px 40px;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.glass{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:25px;
+    transition:.4s;
+}
+
+.glass:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(245,180,0,0.3);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gold{
+    color:#f5b400;
+}
+
+.icon{
+    font-size:28px;
+    color:#f5b400;
+    margin-bottom:10px;
+}
+
+.values{
+    text-align:center;
+    font-size:18px;
+    color:#ddd;
+}
+
+/* ===== Footer ===== */
+.team-footer{
+    background:#f5b400;
+    display:flex;
+    justify-content:space-between;
+    padding:30px;
+    flex-wrap:wrap;
+}
+
+.member{
+    display:flex;
+    gap:10px;
+}
+
+.line{
+    width:3px;
+    background:#111;
+}
+
+.qr img{
+    width:90px;
+}
+
+/* ===== WhatsApp ===== */
+.whatsapp-btn{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    width:55px;
+    height:55px;
+    background:#25D366;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    cursor:pointer;
+    z-index:9999;
+}
+
+/* Popup */
+.whats-popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.whats-box{
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    width:280px;
+}
+
+.whats-box a{
+    display:block;
+    margin:10px 0;
+    padding:10px;
+    background:#25D366;
+    color:#fff;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width:768px){
+
+    body{
+        padding-top:70px;
+    }
+
+    .nav{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .links{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .links a{
+        font-size:13px;
+    }
+
+    .logo img{
+        width:55px;
+    }
+
+    .hero{
+        height:auto;
+        padding:100px 15px 40px;
+    }
+
+    .hero h1{
+        font-size:26px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .section{
+        padding:30px 15px;
+    }
+
+    .glass{
+        padding:18px;
+    }
+
+    .team-footer{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:20px;
+    }
+
+    .member{
+        justify-content:center;
+    }
+
+}
+@media(max-width:768px){
+
+    .nav{
+        flex-direction:row;
+        justify-content:space-between;
+    }
+
+    .links{
+        gap:10px;
+    }
+
+    .links a{
+        font-size:12px;
+    }
+
+    .logo img{
+        width:55px;
+    }
+
+}
+.team-footer{
+    background:#f5b400;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30px 50px;
+    margin-top:80px;
+    flex-wrap:wrap;
+}
+
+/* كل شخص */
+.member{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+/* الخط */
+.line{
+    width:4px;
+    height:70px;
+    background:#111;
+}
+
+/* النص */
+.info h2{
+    margin:0;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.info p{
+    margin:5px 0;
+    font-size:14px;
+}
+
+.info span{
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* QR */
+.qr img{
+    width:100px;
+    border:4px solid #111;
+    padding:5px;
+    background:#fff;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+
+    <nav class="nav">
+
+        <a href="index.html">الرئيسية</a>
+        <a href="bakat.html">الباقات</a>
+
+        <!-- اللوجو في النص -->
+        <div class="logo">
+            <img src="images/logo.png" alt="logo">
+        </div>
+
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل  </a>
+
+    </nav>
+
+</header>
+
+<!-- Hero -->
+<section class="hero">
+<div data-aos="fade-up">
+<h1>عن <span>OMAY</span></h1>
+<p>نحو قرارات مالية أذكى</p>
+</div>
+</section>
+
+<!-- About -->
+<section class="section">
+<div class="glass" data-aos="fade-up">
+<p>
+في OMAY، نؤمن بأن المحاسبة هي أساس القرارات المالية الناجحة.
+نحن شركة متخصصة في تقديم الخدمات المحاسبية والضريبية للشركات والمهنيين.
+</p>
+</div>
+</section>
+
+<!-- Services -->
+<section class="section">
+<h2 data-aos="fade-up">ما نقدمه</h2>
+
+<div class="grid">
+
+<div class="glass"><div class="icon">📊</div><h3 class="gold">محاسبة دقيقة</h3></div>
+<div class="glass"><div class="icon">📑</div><h3 class="gold">إقرارات ضريبية</h3></div>
+<div class="glass"><div class="icon">📈</div><h3 class="gold">تحليل مالي</h3></div>
+<div class="glass"><div class="icon">💼</div><h3 class="gold">استشارات</h3></div>
+<div class="glass"><div class="icon">⚙️</div><h3 class="gold">أنظمة محاسبية</h3></div>
+<div class="glass"><div class="icon">🎓</div><h3 class="gold">تدريب</h3></div>
+
+</div>
+</section>
+
+<!-- Footer -->
+<section class="team-footer">
+
+    <div class="member">
+        <div class="line"></div>
+        <div class="info">
+            <h2>Mohamed El Menyawe</h2>
+            <p>Financial Accountant</p>
+            <span>01065104704</span>
+        </div>
+    </div>
+
+    <div class="qr">
+        <img src="images/qr.jpeg" alt="QR Code">
+    </div>
+
+    <div class="member">
+        <div class="line"></div>
+        <div class="info">
+            <h2>Omar Zahran</h2>
+            <p>Financial Accountant</p>
+            <span>01096510474</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- WhatsApp -->
+<a class="whatsapp-btn" onclick="openWhatsPopup()">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<div id="whatsPopup" class="whats-popup">
+<div class="whats-box">
+<h3>عاوز تكلم مين؟</h3>
+<a href="https://wa.me/201096510474" target="_blank">عمر</a>
+<a href="https://wa.me/201065104704" target="_blank">محمد</a>
+<span onclick="closeWhatsPopup()">×</span>
+</div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init();
+
+function openWhatsPopup(){
+document.getElementById("whatsPopup").style.display="flex";
+}
+
+function closeWhatsPopup(){
+document.getElementById("whatsPopup").style.display="none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الدورات التدريبية - OMAY</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:Cairo;
+    background:#0a0a0a;
+    color:#fff;
+}
+
+/* ===== Header ===== */
+.header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    z-index:999;
+}
+
+.nav{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:18px;
+    position:relative;
+}
+
+.nav a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    background:#f5b400;
+    bottom:-5px;
+    right:0;
+    transition:.3s;
+}
+
+.nav a:hover{
+    color:#f5b400;
+}
+
+.nav a:hover::after{
+    width:100%;
+}
+
+.logo img{
+    width:80px;
+}
+
+/* ===== Hero ===== */
+.hero{
+    height:60vh;
+    background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.95)),
+    url('https://images.unsplash.com/photo-1554224155-6726b3ff858f') center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero span{
+    color:#f5b400;
+}
+
+/* ===== Section ===== */
+.section{
+    padding:80px 40px;
+}
+
+/* Grid */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+/* Card */
+.card{
+    background:#111;
+    padding:25px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:.4s;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:
+        0 0 10px #f5b400,
+        0 0 30px rgba(245,180,0,0.3);
+}
+
+.card h3{
+    color:#f5b400;
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#111;
+    padding:30px;
+    border-radius:15px;
+    width:350px;
+    text-align:center;
+}
+
+.close{
+    float:left;
+    cursor:pointer;
+    color:#f5b400;
+    font-size:20px;
+}
+
+/* Button */
+.btn{
+    margin-top:15px;
+    width:100%;
+    padding:12px;
+    background:#f5b400;
+    border:none;
+    cursor:pointer;
+}
+
+/* Footer */
+.team-footer{
+    background:#f5b400;
+    display:flex;
+    justify-content:space-between;
+    padding:30px 50px;
+    flex-wrap:wrap;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .team-footer{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+.popup-content{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    width:90%;
+    max-width:500px;
+    max-height:80vh;
+    overflow-y:auto;
+    text-align:right;
+}
+.popup-content ul{
+    padding-right:20px;
+}
+
+.popup-content li{
+    margin:8px 0;
+    line-height:1.7;
+}
+/* زرار واتساب */
+.whatsapp-btn{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    width:55px;
+    height:55px;
+    background:#25D366;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:26px;
+    cursor:pointer;
+    z-index:9999;
+    box-shadow:0 0 10px rgba(0,0,0,0.4);
+    transition:.3s;
+}
+
+.whatsapp-btn:hover{
+    transform:scale(1.1);
+}
+
+/* البوب اب */
+.whats-popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.whats-box{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    width:300px;
+}
+
+.whats-box h3{
+    margin-bottom:15px;
+    color:#25D366;
+}
+
+.whats-box a{
+    display:block;
+    margin:10px 0;
+    padding:10px;
+    background:#25D366;
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+}
+
+.whats-box span{
+    display:block;
+    margin-top:10px;
+    cursor:pointer;
+    color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+<nav class="nav">
+<a href="index.html">الرئيسية</a>
+<a href="bakat.html">الباقات</a>
+
+<div class="logo">
+<img src="images/logo.png">
+</div>
+
+<a href="#" style="color:#f5b400;">الدورات</a>
+<a href="contact.html">تواصل</a>
+</nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+<div>
+<h1>الدورات <span>التدريبية</span></h1>
+</div>
+</section>
+
+<!-- Courses -->
+<section class="section" id="courses"></section>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+<div class="popup-content">
+<span class="close" onclick="closePopup()">×</span>
+<h3 id="title"></h3>
+<p id="desc"></p>
+<button class="btn" onclick="openChoose()">احجز الآن</button>
+</div>
+</div>
+
+<!-- Choose -->
+<div id="choose" class="popup">
+<div class="popup-content">
+<h3>اختار تبعت لمين 👇</h3>
+<button class="btn" onclick="send('201065104704','Mohamed')">
+ENG/ Mohamed Elmenyawy
+</button>
+
+<button class="btn" onclick="send('201096510474','Omar')">
+ENG / Omar Zahran
+</button>
+</div>
+</div>
+
+<!-- Footer -->
+<section class="team-footer">
+
+    <div class="member">
+        <div class="line"></div>
+        <div class="info">
+            <h2>Mohamed El Menyawe</h2>
+            <p>Financial Accountant</p>
+            <span>01065104704</span>
+        </div>
+    </div>
+
+    <div class="qr">
+        <img src="images/qr.jpeg" alt="QR Code">
+    </div>
+
+    <div class="member">
+        <div class="line"></div>
+        <div class="info">
+            <h2>Omar Zahran</h2>
+            <p>Financial Accountant</p>
+            <span>01096510474</span>
+        </div>
+    </div>
+
+</section>
+<script>
+
+let coursesData = [
+{title:"دورة أساسيات المحاسبة المالية", desc:"سيتم إضافة التفاصيل"},
+{title:"دورة أساسيات محاسبة التكاليف", desc:""},
+{title:"دورة التأهيل للعمل كمحاسب مالي", desc:"سيتم إضافة التفاصيل"},
+{title:"دورة التأهيل كمحاسب تكاليف", desc:""},
+{title:"دورة محاسبة المقاولات", desc:""},
+{title:"دورة محاسبة الفنادق", desc:""},
+{title:"دورة محاسبة المطاعم", desc:""},
+{title:"دورة محاسبة الضرائب", desc:""},
+{title:"دورة محاسبة المستشفيات", desc:""},
+{title:"دورة الاكسيل المحاسبي", desc:""},
+{title:"دورة التأهيل للعمل كمسؤول موارد بشرية", desc:""},
+{title:"دورة محاسبة الكترونية", desc:""},
+{title:"دورة محاسبة المصانع", desc:""},
+{title:"دورة كيفية عمل دراسة الجدوى و التنبؤ المالي", desc:""},
+{title:"دورة كيفية التعامل عند الدخول لشركة لأول مرة", desc:""}
+];
+
+
+
+let container = document.getElementById("courses");
+
+let grid = document.createElement("div");
+grid.className = "grid";
+
+coursesData.forEach(c => {
+
+    let div = document.createElement("div");
+    div.className = "card";
+
+    div.innerHTML = `
+        <h3>${c.title}</h3>
+    `;
+
+    div.onclick = () => openPopup(c);
+
+    grid.appendChild(div);
+});
+
+container.appendChild(grid);
+
+let selectedCourse="";
+
+function openPopup(course){
+
+    selectedCourse = course.title;
+    document.getElementById("title").innerText = course.title;
+
+    let content = "";
+
+    // 📌 دورة أساسيات المحاسبة المالية
+    if(course.title === "دورة أساسيات المحاسبة المالية"){
+        content = `
+        <ul>
+        <li>نظرة حول البعد النظري للمحاسبة المالية</li>
+        <li>كيفية إعداد شجرة الحسابات وكيفية تكويدها</li>
+        <li>كيفية إعداد قيود اليومية بكافة أنواعها وكيفية تسجيلها في دفتر اليومية</li>
+        <li>معرفة الفرق بين أنواع دفاتر اليومية</li>
+        <li>كيفية إعداد دفتر الأستاذ وكيفية الترحيل إليه</li>
+        <li>إعداد ميزان المراجعة قبل وبعد التسويات الجردية وطرق تصويب الأخطاء المحاسبية</li>
+        <li>إعداد التسويات الجردية</li>
+        <li>إعداد القوائم المالية:
+            <ul>
+                <li>قائمة الدخل</li>
+                <li>قائمة المركز المالي</li>
+                <li>قائمة الدخل الشامل</li>
+                <li>قائمة التغير في حقوق الملكية</li>
+                <li>قائمة التدفقات النقدية</li>
+            </ul>
+        </li>
+        <li>كيفية إعداد قيود الإقفال وإغلاق السنة المالية</li>
+        <li>طرق حساب الإهلاك</li>
+        <li>امتحان عملي ونظري بعد انتهاء الدورة</li>
+        <li>سيتم التطبيق بشكل عملي على نظام محاسبي متكامل</li>
+        </ul>
+        `;
+    }
+
+    // 📌 دورة التأهيل للعمل كمحاسب مالي
+    else if(course.title === "دورة التأهيل للعمل كمحاسب مالي"){
+        content = `
+        <ul>
+        <li>كيفية إعداد الدورة المستندية للشركة</li>
+        <li>المقبوضات والمدفوعات (إدارة الخزينة)</li>
+        <li>المشتريات</li>
+        <li>المبيعات</li>
+
+        <li>كيفية إدارة المخازن والرقابة عليها:
+            <ul>
+                <li>الدورة المستندية للمخازن</li>
+                <li>الرقابة على المخزون</li>
+                <li>طرق الجرد</li>
+                <li>تسعير المخزون</li>
+                <li>تقييم المخزون</li>
+            </ul>
+        </li>
+
+        <li>كيفية إعداد التقارير المالية:
+            <ul>
+                <li>إدارة حسابات البنوك</li>
+                <li>إدارة حسابات العملاء</li>
+                <li>إدارة حسابات الموردين</li>
+                <li>مذكرة تسوية البنك</li>
+            </ul>
+        </li>
+
+        <li>الأصول الثابتة:
+            <ul>
+                <li>جرد الأصول الثابتة</li>
+                <li>تقييم الأصول الثابتة</li>
+                <li>طرق إهلاك الأصول الثابتة</li>
+            </ul>
+        </li>
+
+        <li>الحسابات العامة:
+            <ul>
+                <li>إعداد قيود اليومية</li>
+                <li>الترحيل إلى دفتر الأستاذ</li>
+                <li>إعداد ميزان المراجعة</li>
+                <li>التسويات الجردية</li>
+            </ul>
+        </li>
+
+        <li>إعداد القوائم المالية:
+            <ul>
+                <li>قائمة الدخل</li>
+                <li>قائمة المركز المالي</li>
+                <li>قائمة الدخل الشامل</li>
+                <li>قائمة التغير في حقوق الملكية</li>
+                <li>قائمة التدفقات النقدية</li>
+            </ul>
+        </li>
+        </ul>
+        `;
+    }
+
+    else{
+        content = "سيتم إضافة تفاصيل هذه الدورة قريبًا...";
+    }
+
+    document.getElementById("desc").innerHTML = content;
+    document.getElementById("popup").style.display = "flex";
+}
+
+</script>
+<script>
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+function openChoose(){
+    document.getElementById("choose").style.display="flex";
+}
+
+function closeChoose(){
+    document.getElementById("choose").style.display="none";
+}
+
+
+
+/* حل مشكلة عدم الإغلاق */
+window.onclick=function(e){
+    let popup=document.getElementById("popup");
+    let choose=document.getElementById("choose");
+
+    if(e.target===popup){
+        closePopup();
+    }
+
+    if(e.target===choose){
+        closeChoose();
+    }
+}
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDab-8s-bk56o1r4eMF6Dysj85cxh6VSJY",
+  authDomain: "omay-1.firebaseapp.com",
+  projectId: "omay-1"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ✨ تعديل الفنكشن
+async function send(phone, person){
+
+    let name = prompt("اكتب اسمك");
+    if(!name) return;
+
+    // تسجيل في Firebase
+    await db.collection("clients").add({
+        name: name,
+        service: selectedCourse,
+        to: person,
+        phone: phone,
+        date: new Date().toLocaleString()
+    });
+
+    // رسالة واتساب
+    let msg=`السلام عليكم 👋
+عاوز احجز دورة: ${selectedCourse}
+الاسم: ${name}`;
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+
+    // يقفل البوب اب بعد الاختيار
+    closeChoose();
+    closePopup();
+}
+</script>
+<a class="whatsapp-btn" onclick="openWhatsPopup()">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Popup -->
+<div id="whatsPopup" class="whats-popup">
+  <div class="whats-box">
+    <h3>عاوز تكلم مين؟</h3>
+
+    <a href="https://wa.me/201096510474" target="_blank">
+        👨‍💼 عمر
+    </a>
+
+    <a href="https://wa.me/201065104704" target="_blank">
+        👨‍💼 محمد
+    </a>
+
+    <span onclick="closeWhatsPopup()">×</span>
+  </div>
+</div>
+<script>
+function openWhatsPopup(){
+    document.getElementById("whatsPopup").style.display="flex";
+}
+
+function closeWhatsPopup(){
+    document.getElementById("whatsPopup").style.display="none";
+}
+</script>
+</body>
+</html>

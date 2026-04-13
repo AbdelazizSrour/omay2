@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>خدماتنا</title>
+
+<style>
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #0f172a;
+    color: white;
+    margin: 0;
+    font-size: 18px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: #020617;
+    box-shadow: 0 0 10px rgba(0, 255, 213, 0.2);
+}
+
+.logo img { height: 55px; }
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #00ffd5;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: #00ffd5;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* CONTENT */
+.container { padding: 40px; }
+
+h1 {
+    text-align: center;
+    font-size: 32px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px #00ffd5;
+}
+
+.price { color: #22c55e; }
+
+button {
+    background: #00ffd5;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #00c9a7;
+    box-shadow: 0 0 15px #00ffd5;
+}
+
+/* POPUP */
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+.popup-content {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    white-space: pre-line;
+}
+
+.whatsapp-btn {
+    margin-top: 20px;
+    background: #25D366;
+    width: 100%;
+    color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+<ul class="nav-links">
+<li><a href="index.html">الرئيسية</a></li>
+<li><a href="services.html">الخدمات</a></li>
+<li><a href="about.html">من نحن</a></li>
+<li><a href="contact.html">تواصل</a></li>
+</ul>
+
+<div class="logo">
+<img src="images/logo.png">
+</div>
+</header>
+
+<div class="container">
+<h1>خدماتنا المحاسبية</h1>
+<div class="cards" id="cards"></div>
+</div>
+
+<!-- Popup التفاصيل -->
+<div id="popup" class="popup">
+<div class="popup-content" onclick="event.stopPropagation()">
+<span onclick="closePopup()" style="cursor:pointer;color:red">✖</span>
+<h2 id="title"></h2>
+<p id="details"></p>
+<button class="whatsapp-btn" id="orderBtn">احجز الآن</button>
+</div>
+</div>
+
+<!-- Popup اختيار الشخص -->
+<div id="choosePopup" class="popup" onclick="closeChoosePopup()">
+<div class="popup-content" onclick="event.stopPropagation()">
+<h3>اختار تبعت لمين 👇</h3>
+
+<button class="whatsapp-btn" onclick="sendOrder('201065104704','Mohamed')">
+ENG / Mohamed
+</button>
+
+<button class="whatsapp-btn" onclick="sendOrder('201096510474','Omar')">
+ENG / Omar
+</button>
+
+</div>
+</div>
+
+<!-- نفس الكود اللي فات كله زي ما هو لحد جزء البيانات واستبدل بس الجزء ده 👇 -->
+
+<script>
+
+// ===== كل الخدمات الأصلية =====
+let services = [
+
+{
+name:"برنامج محاسبي مخصص",
+price:"يبدأ من 1500 جنيه",
+details:`اعداد برامج محاسبية مخصصة للمنشأة سواء كانت محل او شركة صغيرة او شركة متوسطة
+• برامج جاهزة لإدارة منشأتك
+• تقارير لحظية أرباح وخسائر
+• إدارة المخزون والخزنة والبنوك
+مدة التنفيذ: 3 إلى 7 أيام`
+},
+
+{
+name:"استشارات محاسبية",
+price:"200 - 500 جنيه",
+details:`تقديم استشارات محاسبية وضريبية
+• مراجعة الوضع المالي
+• تحسين الأداء
+• تقليل الضرائب`
+},
+
+{
+name:"محاسب Part Time",
+price:"4000 جنيه",
+details:`محاسب متخصص لإدارة حساباتك شهريًا`
+},
+
+{
+name:"Payroll",
+price:"20 جنيه لكل موظف",
+details:`حساب المرتبات والتأمينات والضرائب`
+},
+
+{
+name:"نظام ضبط التكاليف",
+price:"يبدأ من 2000 جنيه",
+details:`تحليل التكاليف وتحسين الربحية`
+},
+
+{
+name:"إدارة المخازن",
+price:"يبدأ من 2500 جنيه",
+details:`تنظيم المخزون وربطه بالمحاسبة`
+},
+
+{
+name:"دراسة جدوى",
+price:"يبدأ من 3000 جنيه",
+details:`تحليل شامل للمشروع قبل التنفيذ`
+},
+
+{
+name:"مراجعة حسابات",
+price:"1500 جنيه شهريًا",
+details:`فحص العمليات المالية`
+},
+
+{
+name:"إقرارات ضريبية",
+price:"600 جنيه",
+details:`تجهيز وتقديم الإقرارات`
+},
+
+{
+name:"تأسيس شركة",
+price:"4000 جنيه",
+details:`إنشاء نظام محاسبي كامل`
+}
+
+];
+
+
+// ===== باقي الكود زي ما هو =====
+let container = document.getElementById("cards");
+
+services.forEach((s,i)=>{
+container.innerHTML += `
+<div class="card">
+<h3>${s.name}</h3>
+<p>${s.details.split('\n')[0]}</p>
+<div class="price">${s.price}</div>
+<button onclick="openPopup(${i})">عرض التفاصيل</button>
+</div>
+`;
+});
+
+
+// ===== متغيرات =====
+let selectedService="";
+let selectedDetails="";
+let selectedPrice="";
+
+// ===== Popup =====
+function openPopup(i){
+let s = services[i];
+
+selectedService = s.name;
+selectedDetails = s.details;
+selectedPrice = s.price;
+
+document.getElementById("title").innerText = s.name;
+document.getElementById("details").innerText = s.details;
+
+document.getElementById("popup").style.display = "flex";
+
+document.getElementById("orderBtn").onclick = function(){
+    document.getElementById("choosePopup").style.display="flex";
+};
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function closeChoosePopup(){
+document.getElementById("choosePopup").style.display="none";
+}
+
+
+// ===== الحجز =====
+async function sendOrder(phone, person){
+
+let name = prompt("اكتب اسمك");
+if(!name) return;
+
+// 🔥 تسجيل في Firebase
+await db.collection("clients").add({
+name:name,
+service:selectedService,
+details:selectedDetails,
+price:selectedPrice,
+to:person,
+page:"صفحة الخدمات",
+phone:phone,
+date:new Date().toLocaleString()
+});
+
+// واتساب
+let msg=`السلام عليكم 👋
+عاوز احجز خدمة: ${selectedService}
+السعر: ${selectedPrice}
+الاسم: ${name}`;
+
+window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+
+closeChoosePopup();
+closePopup();
+}
+
+</script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "omay-1.firebaseapp.com",
+  projectId: "omay-1"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+<script>
+    window.onclick = function(e){
+    let popup = document.getElementById("popup");
+    let choose = document.getElementById("choosePopup");
+
+    if(e.target === popup){
+        closePopup();
+    }
+
+    if(e.target === choose){
+        closeChoosePopup();
+    }
+}
+</script>
+</body>
+</html>

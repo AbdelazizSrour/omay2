@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>OMAY</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:Cairo;
+    background:#0a0a0a;
+    color:#fff;
+}
+
+/* ===== Hero ===== */
+.hero{
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+    url('https://images.unsplash.com/photo-1554224155-6726b3ff858f') center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero span{
+    color:#f5b400;
+}
+
+.btn-main{
+    margin-top:20px;
+    padding:12px 25px;
+    border:2px solid #f5b400;
+    color:#f5b400;
+    background:transparent;
+    cursor:pointer;
+}
+
+/* ===== Sections ===== */
+.section{
+    padding:80px 40px;
+}
+
+/* خدمات */
+.cards{
+    display:flex;
+    gap:20px;
+}
+
+.card{
+    flex:1;
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    transition:.4s;
+}
+
+.card:hover{
+    box-shadow:0 0 20px #f5b400;
+}
+
+/* عملاء */
+.clients{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+}
+
+.clients img{
+    width:100px;
+    opacity:.6;
+    transition:.3s;
+}
+
+.clients img:hover{
+    opacity:1;
+}
+
+/* Testimonials */
+.testimonials{
+    display:flex;
+    gap:20px;
+}
+
+.test{
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+}
+
+/* WhatsApp */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:#25D366;
+    color:#fff;
+    padding:15px;
+    border-radius:50%;
+    font-size:20px;
+    text-decoration:none;
+}
+
+/* موبايل */
+@media(max-width:900px){
+    .cards,.clients,.testimonials{
+        flex-direction:column;
+        align-items:center;
+    }
+}
+.card{
+    background: #111;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    transition: .3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover{
+    transform: translateY(-10px);
+    box-shadow:
+        0 0 10px #f5b400,
+        0 0 30px rgba(245,180,0,0.4);
+}
+
+.card h3{
+    color: #f5b400;
+    margin-bottom: 10px;
+}
+
+.card p{
+    color: #ccc;
+    font-size: 14px;
+}
+.logo{
+    text-align:center;
+    font-size:40px;
+    font-weight:bold;
+    color:#f5b400;
+}
+
+.logo span{
+    color:#fff;
+}
+
+.logo p{
+    font-size:12px;
+    color:#aaa;
+}
+/* Grid احترافي */
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+/* الكارت */
+.card{
+    background: #111;
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+
+    opacity: 0;
+    transform: translateY(50px);
+
+    transition: 0.4s;
+}
+
+/* عند الظهور */
+.card.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover */
+.card:hover{
+    transform: translateY(-10px) scale(1.03);
+    box-shadow:
+        0 0 10px #f5b400,
+        0 0 30px rgba(245,180,0,0.4);
+}
+
+.card h3{
+    color:#f5b400;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#aaa;
+    font-size:14px;
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#111;
+    padding:30px;
+    border-radius:15px;
+    width:300px;
+    text-align:center;
+}
+
+.close{
+    cursor:pointer;
+    float:left;
+    color:#f5b400;
+    font-size:20px;
+}
+.team-footer{
+    background:#f5b400;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30px 50px;
+    margin-top:80px;
+    flex-wrap:wrap;
+}
+
+/* كل شخص */
+.member{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+/* الخط */
+.line{
+    width:4px;
+    height:70px;
+    background:#111;
+}
+
+/* النص */
+.info h2{
+    margin:0;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.info p{
+    margin:5px 0;
+    font-size:14px;
+}
+
+.info span{
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* QR */
+.qr img{
+    width:100px;
+    border:4px solid #111;
+    padding:5px;
+    background:#fff;
+}
+
+/* Animation */
+.member{
+    opacity:0;
+    transform:translateY(30px);
+    animation:fadeUp 1s ease forwards;
+}
+
+.member:nth-child(1){
+    animation-delay:0.2s;
+}
+.member:nth-child(3){
+    animation-delay:0.4s;
+}
+
+@keyframes fadeUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* موبايل */
+@media(max-width:768px){
+    .team-footer{
+        flex-direction:column;
+        gap:20px;
+        text-align:center;
+    }
+
+    .member{
+        justify-content:center;
+    }
+
+    .line{
+        display:none;
+    }
+}
+html{
+    scroll-behavior: smooth;
+}
+/* ===== Header ===== */
+/* ===== Header ===== */
+.header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center; /* في النص */
+    align-items:center;
+    padding:20px;
+    z-index:999;
+}
+
+/* اللوجو */
+.header .logo img{
+    width:80px;
+}
+
+/* المنيو */
+.nav{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+/* اللينكات */
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:18px; /* كبرنا الخط */
+    position:relative;
+    transition:.3s;
+}
+
+/* Hover تأثير احترافي */
+.nav a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    background:#f5b400;
+    bottom:-5px;
+    right:0;
+    transition:.3s;
+}
+
+.nav a:hover{
+    color:#f5b400;
+    transform:scale(1.1);
+}
+
+.nav a:hover::after{
+    width:100%;
+    left:0;
+}
+
+/* مسافة عشان الهيدر */
+.hero{
+    margin-top:90px;
+}
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+
+    width:60px;
+    height:60px;
+
+    background:#25D366;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    font-size:28px;
+
+    cursor:pointer;
+    z-index:9999;
+
+    box-shadow:
+        0 0 10px #25D366,
+        0 0 25px rgba(37,211,102,0.6);
+
+    transition:0.3s;
+}
+
+/* Hover 🔥 */
+.whatsapp:hover{
+    transform:scale(1.1);
+    box-shadow:
+        0 0 20px #25D366,
+        0 0 40px rgba(37,211,102,0.8);
+}
+</style>
+
+</head>
+<!-- Header -->
+<!-- Header -->
+<header class="header">
+
+    <nav class="nav">
+
+        <a href="index.html">الرئيسية</a>
+        <a href="bakat.html">الباقات</a>
+
+        <!-- اللوجو في النص -->
+        <div class="logo">
+            <img src="images/logo.png" alt="logo">
+        </div>
+
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
+
+    </nav>
+
+</header>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div data-aos="fade-up">
+        <h1>OM<span>AY</span></h1>
+        <p>Your Numbers, Our Expertise</p>
+        <button class="btn-main" onclick="goToServices()">
+    ابدأ الآن
+</button>
+    </div>
+</section>
+
+<!-- خدمات -->
+<section class="section" id="services">
+    <h2 data-aos="fade-up">خدماتنا</h2>
+
+    <div class="cards" id="servicesContainer"></div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <button class="btn-main" onclick="loadMore()">عرض المزيد</button>
+    </div>
+</section>
+
+<!-- عملاء -->
+<section class="section">
+    <h2 data-aos="fade-up">عملاؤنا</h2>
+
+    <div class="clients">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968853.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png">
+    </div>
+</section>
+
+<!-- آراء العملاء -->
+<section class="section">
+    <h2 data-aos="fade-up">آراء العملاء</h2>
+
+    <div class="testimonials">
+
+        <div class="test" data-aos="fade-right">
+            <p>خدمة ممتازة وسرعة في التنفيذ</p>
+        </div>
+
+        <div class="test" data-aos="fade-left">
+            <p>أفضل شركة تعاملنا معاها</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- واتساب -->
+<a class="whatsapp" onclick="openWhatsPopup()">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({
+    duration:1000
+});
+</script>
+<script>
+
+// ================== الخدمات ==================
+let allServices = [
+    {title:"إعداد برامج محاسبية", desc:"تصميم برامج مخصصة حسب نشاط شركتك"},
+    {title:"استشارات محاسبية وضريبية", desc:"تقديم حلول مالية دقيقة"},
+    {title:"إدارة الحسابات", desc:"إدارة كاملة لكل حسابات الشركة"},
+    {title:"متابعة يومية", desc:"متابعة العمليات المالية أول بأول"},
+    {title:"أنظمة إدارة المخازن", desc:"تصميم نظام مخزون كامل"},
+    {title:"ربط المخزون بالمحاسبة", desc:"ربط كل حركة بحساب محاسبي"},
+    {title:"الدورة المستندية", desc:"تنظيم العمليات المخزنية بالكامل"},
+    {title:"إدارة الرواتب (Payroll)", desc:"حساب المرتبات والبدلات"},
+    {title:"أنظمة الموارد البشرية", desc:"إدارة بيانات الموظفين"},
+    {title:"إعداد التقارير المالية", desc:"تقارير دقيقة لاتخاذ القرار"},
+    {title:"تحليل الأداء (KPIs)", desc:"تحليل الأداء وتحسين النتائج"},
+    {title:"دراسات جدوى", desc:"تحليل المشاريع قبل التنفيذ"},
+    {title:"تحليل مالي", desc:"تقييم الوضع المالي للشركة"},
+    {title:"إعداد الإقرارات الضريبية", desc:"تجهيز وتقديم الإقرارات"},
+    {title:"الفاتورة الإلكترونية", desc:"تطبيق النظام الإلكتروني"},
+    {title:"مراجعة داخلية", desc:"تدقيق العمليات المالية"},
+    {title:"مراجعة مستندية", desc:"فحص المستندات"},
+    {title:"تدريب محاسبين", desc:"تأهيل لسوق العمل"},
+    {title:"تأسيس الشركات", desc:"بدء شركتك من الصفر"},
+    {title:"إمساك الدفاتر", desc:"تنظيم الحسابات قانونيًا"},
+    {title:"تسويات بنكية", desc:"مطابقة الحسابات"},
+    {title:"تقارير دورية", desc:"تقارير أسبوعية وشهرية"}
+];
+
+// ================== إعدادات ==================
+let currentIndex = 0;
+let step = 6;
+
+// ================== أول تحميل ==================
+window.onload = function(){
+    loadMore();
+}
+
+// ================== عرض الخدمات ==================
+function loadMore(){
+    let container = document.getElementById("servicesContainer");
+
+    if(!container) return;
+
+    let added = 0;
+
+    while(added < step && currentIndex < allServices.length){
+
+        let s = allServices[currentIndex];
+
+        let div = document.createElement("div");
+        div.className = "card";
+
+        div.innerHTML = `
+            <h3>${s.title}</h3>
+            <p>${s.desc}</p>
+        `;
+
+        // عند الضغط يفتح popup
+        div.onclick = () => openPopup(s);
+
+        container.appendChild(div);
+
+        // animation دخول
+        setTimeout(() => {
+            div.classList.add("show");
+        }, 100 * added);
+
+        currentIndex++;
+        added++;
+    }
+}
+
+// ================== Popup ==================
+function openPopup(service){
+    let popup = document.getElementById("popup");
+    let title = document.getElementById("popupTitle");
+    let desc = document.getElementById("popupDesc");
+
+    selectedService = service.title; // 🔥 الجديد
+
+    if(!popup) return;
+
+    title.innerText = service.title;
+    desc.innerText = service.desc;
+
+    popup.style.display = "flex";
+}
+
+function closePopup(){
+    let popup = document.getElementById("popup");
+    popup.style.display = "none";
+}
+function goToServices(){
+    document.getElementById("services").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+// ================== قفل بالضغط بره ==================
+window.onclick = function(e){
+    let popup = document.getElementById("popup");
+    if(e.target === popup){
+        closePopup();
+    }
+}
+
+</script>
+<!-- Popup الخدمة -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span onclick="closePopup()" class="close">&times;</span>
+        <h2 id="popupTitle"></h2>
+        <p id="popupDesc"></p>
+
+        <button class="btn-main" onclick="openChoosePopup()">
+            احجز الآن
+        </button>
+    </div>
+</div>
+
+<!-- Popup اختيار الرقم -->
+<div id="choosePopup" class="popup">
+    <div class="popup-content">
+        <span onclick="closeChoosePopup()" class="close">&times;</span>
+        <h3>اختار تبعت لمين 👇</h3>
+
+        <button class="btn-main" onclick="sendWhatsApp('201065104704')">
+            👨‍💻 مهندس محمد المنياوي
+        </button>
+
+        <button class="btn-main" onclick="sendWhatsApp('201096510474')">
+            👨‍💻 مهندس عمر زهران
+        </button>
+    </div>
+</div>
+<section class="team-footer">
+
+    <div class="member">
+        <div class="line"></div>
+        <div class="info">
+            <h2>Mohamed El Menyawe</h2>
+            <p>Financial Accountant</p>
+            <span>01065104704</span>
+        </div>
+    </div>
+
+    <div class="qr">
+        <img src="images/qr.jpeg" alt="QR Code">
+    </div>
+
+    <div class="member">
+        <div class="line"></div>
+        <div class="info">
+            <h2>Omar Zahran</h2>
+            <p>Financial Accountant</p>
+            <span>01096510474</span>
+        </div>
+    </div>
+
+</section>
+<script>
+
+</script>
+<script>
+    let selectedService = "";
+
+// فتح popup الخدمة
+function openPopup(service){
+    selectedService = service.title;
+
+    document.getElementById("popupTitle").innerText = service.title;
+    document.getElementById("popupDesc").innerText = service.desc;
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+
+// فتح اختيار الرقم
+function openChoosePopup(){
+    document.getElementById("choosePopup").style.display = "flex";
+}
+
+// قفل اختيار الرقم
+function closeChoosePopup(){
+    document.getElementById("choosePopup").style.display = "none";
+}
+
+// إرسال واتساب
+async function sendWhatsApp(phone){
+
+    if(selectedService === ""){
+        alert("اختار خدمة الأول 👀");
+        return;
+    }
+
+    let name = prompt("اكتب اسمك");
+    if(!name) return;
+
+    // 🔥 تسجيل في Firebase
+    await db.collection("clients").add({
+        name: name,
+        service: selectedService,
+        page: "الخدمات",
+        phone: phone,
+        date: new Date().toLocaleString()
+    });
+
+    let message = `السلام عليكم 👋
+عاوز احجز خدمة: ${selectedService}
+الاسم: ${name}`;
+
+    let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+
+    closeChoosePopup();
+    closePopup();
+}
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "omay-1.firebaseapp.com",
+  projectId: "omay-1"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+<div id="whatsPopup" class="popup">
+    <div class="popup-content">
+        <span onclick="closeWhatsPopup()" class="close">&times;</span>
+        <h3>تحب تكلم مين؟ 👇</h3>
+
+        <button class="btn-main" onclick="sendWhats('201065104704')">
+            👨‍💻 مهندس محمد المنياوي
+        </button>
+
+        <button class="btn-main" onclick="sendWhats('201096510474')">
+            👨‍💻 مهندس عمر زهران
+        </button>
+    </div>
+</div>
+<script>
+function openWhatsPopup(){
+    document.getElementById("whatsPopup").style.display = "flex";
+}
+
+function closeWhatsPopup(){
+    document.getElementById("whatsPopup").style.display = "none";
+}
+
+function sendWhats(phone){
+
+    let message = `السلام عليكم 👋
+كنت عايز استفسر عن خدماتكم`;
+
+    let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+}
+
+// قفل لما تدوس بره
+window.addEventListener("click", function(e){
+    let popup = document.getElementById("whatsPopup");
+    if(e.target === popup){
+        closeWhatsPopup();
+    }
+});
+</script>
+</body>
+</html>

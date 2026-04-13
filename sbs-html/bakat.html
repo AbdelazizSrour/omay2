@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الباقات - OMAY</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:Cairo;
+    background:#0a0a0a;
+    color:#fff;
+}
+
+/* ===== Header ===== */
+.header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    z-index:999;
+}
+
+.nav{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:18px;
+    position:relative;
+}
+
+.nav a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:2px;
+    background:#00ffd5;
+    bottom:-5px;
+    right:0;
+    transition:.3s;
+}
+
+.nav a:hover{
+    color:#00ffd5;
+}
+
+.nav a:hover::after{
+    width:100%;
+}
+
+/* ===== Hero ===== */
+.hero{
+    height:60vh;
+    background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.95)),
+    url('https://images.unsplash.com/photo-1554224155-6726b3ff858f') center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+     color:#00ffd5;
+}
+
+.hero span{
+    color:#00ffd5;
+}
+
+/* ===== Pricing ===== */
+.section{
+    padding:100px 20px;
+}
+
+.pricing{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.card{
+    background:#111;
+    width:300px;
+    border-radius:20px;
+    padding:25px;
+    transition:.4s;
+    border:1px solid rgba(255,255,255,0.05);
+    min-height:420px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 10px #00ffd5,0 0 30px rgba(0,255,213,0.3);
+}
+
+.card h3{
+    color:#00ffd5;
+    text-align:center;
+}
+
+.card ul{
+    list-style:none;
+    padding:0;
+}
+
+.card ul li{
+    margin:8px 0;
+    font-size:14px;
+}
+
+/* Button */
+.btn{
+    margin-top:15px;
+    width:100%;
+    padding:12px;
+    background:#00ffd5;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#111;
+    padding:30px;
+    border-radius:15px;
+    width:350px;
+    text-align:center;
+}
+
+.close{
+    float:left;
+    cursor:pointer;
+    color:#00ffd5;
+    font-size:20px;
+}
+
+/* Footer */
+.team-footer{
+    background:#fad310;
+    display:flex;
+    justify-content:space-between;
+    padding:30px 50px;
+    flex-wrap:wrap;
+    color:#000;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .pricing{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .team-footer{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+@media (max-width:768px){
+
+    /* ===== HERO ===== */
+    .hero{
+        height:40vh;
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:28px;
+        line-height:1.4;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing{
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+    }
+
+    .card{
+        width:100% !important;
+        max-width:95%;
+        padding:20px 15px;
+        min-height:auto;
+    }
+
+    .card h3{
+        font-size:18px;
+    }
+
+    .card ul li{
+        font-size:13px;
+        line-height:1.6;
+    }
+
+    /* ===== BUTTON ===== */
+    .btn{
+        padding:10px;
+        font-size:14px;
+        border-radius:25px;
+    }
+
+    /* ===== HEADER ===== */
+    .nav{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .nav a{
+        font-size:14px;
+    }
+
+    .logo img{
+        width:60px;
+    }
+
+    /* ===== FOOTER ===== */
+    .team-footer{
+        flex-direction:column;
+        text-align:center;
+        padding:20px 15px;
+        gap:20px;
+    }
+
+    .team-footer h2{
+        font-size:20px;
+    }
+
+    .team-footer p{
+        font-size:14px;
+    }
+
+    .team-footer img{
+        width:100px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+<nav class="nav">
+<a href="index.html">الرئيسية</a>
+<a href="services.html">الخدمات</a>
+
+<div class="logo">
+<img src="images/logo.png" width="80">
+</div>
+
+<a href="#" style="color:#00ffd5;">الباقات</a>
+<a href="contact.html">تواصل</a>
+</nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+<div>
+<h1>الباقات <span></span></h1>
+</div>
+</section>
+
+<!-- Pricing -->
+<section class="section">
+<div class="pricing">
+
+<!-- 1 -->
+<div class="card" onclick="openPopup('باقة الأساسيات')">
+<h3>باقة الأساسيات</h3>
+<ul>
+<li>إعداد برامج محاسبية مخصصة</li>
+<li>إمساك الدفاتر والتسجيل</li>
+<li>تسجيل الفواتير الإلكترونية</li>
+<li>إعداد التقارير المالية</li>
+<li>إعداد التسويات البنكية</li>
+<li>إعداد الإقرارات الضريبية</li>
+<li>مراجعة مستندية بسيطة</li>
+<li>استشارات شهرية</li>
+<li>قالب إكسيل</li>
+<li>تنبيهات الضرائب</li>
+</ul>
+<button class="btn">احجز الآن</button>
+</div>
+
+<!-- 2 -->
+<div class="card" onclick="openPopup('باقة المطاعم والكافيهات')">
+<h3>باقة للمطاعم والكافيهات</h3>
+<ul>
+<li>إدارة الهدر</li>
+<li>زيارات ميدانية</li>
+<li>ضبط التكاليف</li>
+<li>إدارة المخزون</li>
+<li>تسوية المخزون</li>
+<li>تحليل قائمة الطعام</li>
+<li>مراجعة الأسعار</li>
+<li>تقييم الأداء</li>
+</ul>
+<button class="btn">احجز الآن</button>
+</div>
+
+<!-- 3 -->
+<div class="card" onclick="openPopup('باقة نمو الأعمال')">
+<h3>باقة نمو الأعمال</h3>
+<ul>
+<li>طاقم محاسبي كامل</li>
+<li>إنشاء نظام محاسبي</li>
+<li>إعداد القوائم المالية</li>
+<li>تحليل مالي دوري</li>
+<li>تأسيس دورة مستندية</li>
+<li>Dashboard</li>
+<li>تقارير أسبوعية</li>
+<li>استشارات</li>
+</ul>
+<button class="btn">احجز الآن</button>
+</div>
+
+<!-- 4 -->
+<div class="card" onclick="openPopup('الباقة المتكاملة')">
+<h3>الباقة المتكاملة</h3>
+<ul>
+<li>كل الخدمات</li>
+<li>أنظمة محاسبية</li>
+<li>HR</li>
+<li>KPI</li>
+<li>مراجعة داخلية</li>
+<li>استشارات غير محدودة</li>
+</ul>
+<button class="btn">احجز الآن</button>
+</div>
+
+</div>
+</section>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+<div class="popup-content">
+<span class="close" onclick="closePopup()">×</span>
+<h3 id="title"></h3>
+<button class="btn" onclick="openChoose()">احجز الآن</button>
+</div>
+</div>
+
+<!-- Choose -->
+<div id="choose" class="popup">
+<div class="popup-content">
+<h3>اختار تبعت لمين 👇</h3>
+
+<button class="btn" onclick="send('201065104704','Mohamed')">
+ENG / Mohamed
+</button>
+
+<button class="btn" onclick="send('201096510474','Omar')">
+ENG / Omar
+</button>
+
+</div>
+</div>
+
+<!-- Footer -->
+<section class="team-footer">
+
+<div>
+<h2>Mohamed El Menyawe</h2>
+<p>Financial Accountant</p>
+<span>01065104704</span>
+</div>
+
+<div>
+<img src="images/qr.jpeg" width="120">
+</div>
+
+<div>
+<h2>Omar Zahran</h2>
+<p>Financial Accountant</p>
+<span>01096510474</span>
+</div>
+
+</section>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDab-8s-bk56o1r4eMF6Dysj85cxh6VSJY",
+  authDomain: "omay-1.firebaseapp.com",
+  projectId: "omay-1"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let selectedService="";
+
+function openPopup(service){
+    selectedService = service;
+    document.getElementById("title").innerText = service;
+    document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+function openChoose(){
+    document.getElementById("choose").style.display="flex";
+}
+
+function closeChoose(){
+    document.getElementById("choose").style.display="none";
+}
+
+window.onclick=function(e){
+    if(e.target===popup) closePopup();
+    if(e.target===choose) closeChoose();
+}
+
+async function send(phone, person){
+
+    let name = prompt("اكتب اسمك");
+    if(!name) return;
+
+    // 🔥 تسجيل في Firebase
+    await db.collection("clients").add({
+        name: name,
+        service: selectedService,
+        to: person,
+        phone: phone,
+        date: new Date().toLocaleString()
+    });
+
+    let msg=`السلام عليكم 👋
+عاوز احجز: ${selectedService}
+الاسم: ${name}`;
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+
+    closeChoose();
+    closePopup();
+}
+</script>
+
+</body>
+</html>
